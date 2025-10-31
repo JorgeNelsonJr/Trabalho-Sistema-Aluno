@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Detalhes do Aluno</title>
+  <style>
+    body { font-family: sans-serif; margin: 2em; }
+    .detalhe-container { max-width: 600px; }
+    .detalhe-item { margin-bottom: 15px; }
+    .detalhe-item strong { display: inline-block; width: 100px; }
+    .btn-voltar {
+        display: inline-block;
+        padding: 10px 15px;
+        margin-top: 20px;
+        background-color: #6c757d;
+        color: white;
+        text-decoration: none;
+        border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+
+<div th:if="${aluno != null}" class="detalhe-container">
+  <h1 th:text="'Detalhes de: ' + ${aluno.nomeCompleto}">Detalhes do Aluno</h1>
+
+  <div class="detalhe-item">
+    <strong>Nome:</strong>
+    <span th:text="${aluno.nomeCompleto}">Nome do Aluno</span>
+  </div>
+  <div class="detalhe-item">
+    <strong>Matrícula:</strong>
+    <span th:text="${aluno.matricula}">2024001</span>
+  </div>
+  <div class="detalhe-item">
+    <strong>Email:</strong>
+    <span th:text="${aluno.email}">aluno@email.com</span>
+  </div>
+  <div class="detalhe-item">
+    <strong>Curso:</strong>
+    <span th:text="${aluno.curso}">Engenharia</span>
+  </div>
+
+  <a th:href="@{/alunos}" class="btn-voltar">Voltar para a Lista</a>
+</div>
+
+<div th:if="${aluno == null}">
+  <h1>Aluno não encontrado</h1>
+  <a th:href="@{/alunos}" class="btn-voltar">Voltar para a Lista</a>
+</div>
+
+</body>
+</html>

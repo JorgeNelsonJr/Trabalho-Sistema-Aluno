@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Formulário de Aluno</title>
+  <style>
+    body { font-family: sans-serif; margin: 2em; }
+    form div { margin-bottom: 15px; }
+    label { display: block; margin-bottom: 5px; font-weight: bold; }
+    input[type="text"] { width: 300px; padding: 8px; border-radius: 4px; border: 1px solid #ccc; }
+    .btn { padding: 10px 15px; background-color: #007bff; color: white; text-decoration: none; border-radius: 4px; border: none; cursor: pointer; }
+    .btn-cancelar { background-color: #6c757d; }
+  </style>
+</head>
+<body>
+
+<form th:action="@{/alunos/salvar}" th:object="${aluno}" method="POST">
+
+  <input type="hidden" th:field="*{id}" />
+
+  <h1 th:if="*{id == null}">Cadastrar Novo Aluno</h1>
+  <h1 th:if="*{id != null}">Editar Aluno</h1>
+
+  <div>
+    <label for="nomeCompleto">Nome Completo:</label>
+    <input type="text" id="nomeCompleto" th:field="*{nomeCompleto}" placeholder="Nome do aluno" required>
+  </div>
+  <div>
+    <label for="matricula">Matrícula:</label>
+    <input type="text" id="matricula" th:field="*{matricula}" placeholder="Ex: 2024001" required>
+  </div>
+  <div>
+    <label for="email">Email:</label>
+    <input type="text" id="email" th:field="*{email}" placeholder="aluno@email.com">
+  </div>
+  <div>
+    <label for="curso">Curso:</label>
+    <input type="text" id="curso" th:field="*{curso}" placeholder="Engenharia de Software">
+  </div>
+
+  <div>
+    <button type="submit" class="btn">Salvar</button>
+    <a th:href="@{/alunos}" class="btn btn-cancelar">Cancelar</a>
+  </div>
+</form>
+
+</body>
+</html>
